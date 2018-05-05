@@ -14,8 +14,8 @@ module Binance
 
       def initialize(api_key: '', secret_key: '', proxy: nil)
         @clients = {}
-        @clients[:public]   = public_client adapter
         adapter = Faraday.default_adapter
+        @clients[:public]   = public_client adapter
         @clients[:verified] = verified_client api_key, adapter, proxy
         @clients[:signed]   = signed_client api_key, secret_key, adapter, proxy
         @clients[:withdraw] = withdraw_client api_key, secret_key, adapter, proxy
